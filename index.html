@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Odin RPS</title>
+    </head>
+    <body>
+        <script>
+
+            // 0/1/2 for "Rock" "Paper" "Scissors"
+            function computerPlay(){
+                let i = Math.floor(Math.random()*3);
+                if (i == 1){
+                    return "Rock";
+                }
+                else if (i == 2){
+                    return "Paper";
+                }
+                return "Scissors";
+            }
+            // 
+            function playRound(playerInput, computerInput){
+                if (playerInput == computerInput){
+                    return "You've tied!"
+                }
+                
+                // If rock, check loss, no? dubs. If paper, do same, etc.
+                switch(playerInput){
+                    
+                    case "Rock":
+                        if (computerInput == "Paper"){
+                            return youLose(playerInput, computerInput);
+                        }
+                    return youWin(playerInput, computerInput);
+                    
+                    case "Paper":
+                    if (computerInput == "Scissors"){
+                            return youLose(playerInput, computerInput);
+                        }
+                    return youWin(playerInput, computerInput);
+
+                    case "Scissors":
+                    if (computerInput == "Rock"){
+                            return youLose(playerInput, computerInput);
+                        }
+                    return youWin(playerInput, computerInput);
+                    default:
+                    return "[" + playerInput + "] is not an acceptable option."
+                }
+            }
+            
+            function youLose(you, computer){
+                return "You lose! Computer played: [" + computer + "] while you played: [" + you +"]."
+            }
+            function youWin(you, computer){
+                return "You win! Computer played: [" + computer + "] while you played: [" + you +"]."
+            }
+            
+            function playGame(numRounds){
+                for (i=1; i<=numRounds; i++){
+                    alert(playRound(prompt("Shoot!"), computerPlay()))
+                }
+            }
+
+            playGame(5);
+
+        </script>
+    </body>
+</html>
